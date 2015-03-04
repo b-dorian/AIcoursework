@@ -1,0 +1,19 @@
+(define (domain quadcopter)
+	(:predicates 
+				 (hq-location ?m)
+				 (current-position ?l)
+				 (free-gripper ?g)
+				 (pick-up ?o ?g)
+				 (care-package ?o)
+				 (on-floor-carepackage ?e ?o)
+				 (hover-active ?f)
+				 (move-to-from ?x ?l)
+				 (area-to-explore ?p)
+				 (person ?s)
+				 (drop ?o)
+				 (transmit-coordinates ?l ?m))
+
+	(:action pick-up
+				:parameters (?l ?g ?o ?f)
+				:precondition (and (current-position ?l) (free-gripper ?g) (care-package ?o) (hover-active ?f))
+				:effect (and (not (on-floor-carepackage ?e ?o) (free-gripper ?g))))
